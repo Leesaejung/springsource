@@ -19,19 +19,20 @@ public class BookMain {
 		// Service 호출 
 		BookService service = (BookService) ctx.getBean("bookService");
 		 
+/*
 		// 도서 추가
-/*		BookDTO insertDto = new BookDTO(1012,"모두의 알고리즘", "이승찬", 25000, "파이썬으로 구현하는 알고리즘");
+		BookDTO insertDto = new BookDTO(1013,"모두의 알고리즘 심화", "이승찬", 29000, "파이썬으로 구현하는 알고리즘 심화 버전");
 		if (service.insertBook(insertDto)) {
 			System.out.println("입력성공");
-		}*/
-		
+		}
+*/	
 		// 특정 도서 가격 갱신
-		BookDTO updateDto = new BookDTO();
+//		BookDTO updateDto = new BookDTO();
 //		updateDto.setCode(1011);
 //		updateDto.setPrice(30000);
-		if (service.updateBook(30000, 1011)) {
-			System.out.println("수정 성공");
-		}
+//		if (service.updateBook(30000, 1011)) {
+//			System.out.println("수정 성공");
+//		}
 		
 //		// 특정 도서 조회
 //		BookDTO row = service.getBook(1010);
@@ -44,11 +45,11 @@ public class BookMain {
 		
 		
 		// 전체 도서 목록 가져오기
-		//BookService service = new  BookServiceImpl(new BookDAO());
-//		List<BookDTO> list = service.getBookList();
+//		BookService service = new  BookServiceImpl(new BookDAO());
+		List<BookDTO> list = service.getBookList();
 		
-//		for (BookDTO bookDTO : list) {
-//			System.out.println(bookDTO);
-//		}
+		for (BookDTO bookDTO : list) {
+			System.out.println(bookDTO);
+		}
 	}
 }
