@@ -40,7 +40,7 @@ public class HomeController {
 		logger.info("doA...");
 		// result.jsp 보여주고 싶다면?
 		return "result";
-		
 	}
+	 
 	
 }

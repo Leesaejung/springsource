@@ -7,17 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Index</h1>
-	<ul>
-		<li>
-			<a href="/member/login">로그인</a>
-		</li>
-		<li>
-			<a href="/member/register">회원가입</a>
-		</li>
-		<li>
-			<a href="/board/register">글 등록</a>
-		</li>
-	</ul>
+<h1>결과</h1>
+<h3>${addDTO.num1}+${addDTO.num2} = ${result}</h3> <!-- @ModelAttribute 사용 x -->
+<h3>${add.num1}+${add.num2} = ${result}</h3> <!-- @ModelAttribute 사용 o -->
+<h4>${page}</h4>
 </body>
 </html>

@@ -7,17 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Index</h1>
-	<ul>
-		<li>
-			<a href="/member/login">로그인</a>
-		</li>
-		<li>
-			<a href="/member/register">회원가입</a>
-		</li>
-		<li>
-			<a href="/board/register">글 등록</a>
-		</li>
-	</ul>
+<!-- hong123 님 반갑습니다. 메세지 띄우기 -->
+<h3>${loginDTO.id} 님 반갑습니다.</h3>
 </body>
 </html>

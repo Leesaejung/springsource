@@ -3,11 +3,15 @@ package com.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.domain.LoginDTO;
+import com.spring.domain.RegisterDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,18 +48,50 @@ public class MemberController {
 //	}
 	
 	// 2) 변수 사용
+//	@PostMapping("login")
+//	public void loginPost(@RequestParam("userid") String id, String password) {
+//		log.info("login post...");
+//		// 사용자 입력값 id, password
+//		System.out.println("id :"+id);
+//		System.out.println("password :"+password);
+//	}
+	
+	// 3) 바인딩 객체 사용하기
 	@PostMapping("login")
-	public void loginPost(@RequestParam("userid") String id, String password) {
+	public String loginPost(LoginDTO dto) {
 		log.info("login post...");
 		// 사용자 입력값 id, password
-		System.out.println("id :"+id);
-		System.out.println("password :"+password);
+		System.out.println("id :"+dto.getId());
+		System.out.println("password :"+dto.getPassword());
+		
+		// main.jsp 보여주기
+		return "/member/main";
 	}
+	
+	
 	
 	//@RequestMapping("/register") // // http://localhost:8080/member/register 요청 응답 컨트롤러
 	@GetMapping("/register")
 	public void registerGet() {
 		log.info("register...");
 		//return "/member/register"; // 리턴이 있다면	/WEB-INF/views/register.jsp
+	}
+	
+	// /member/register + POST 처리
+	// DTO 작성
+	// login.jsp 보여주기
+	@PostMapping("register")
+	public String registerPost(RegisterDTO dto) {
+		log.info("회원가입 요청");
+		log.info(dto.toString());
+//		System.out.println("id :"+dto.getId());
+//		System.out.println("password :"+dto.getPassword());
+//		System.out.println("name :"+dto.getName());
+//		System.out.println("email :"+dto.getEmail());
+		
+		// redirect:	붙게 되면 DispatcherServlet 이 동작
+		// == response.sendRedirect()
+		// http://localhost:8080/member/login + GET 요청
+		return "redirect:/member/login";
 	}
 }
