@@ -7,5 +7,5 @@ import com.spring.domain.MemberDTO;
 public interface MemberMapper {
 	public String getPass(String userid);
 	public AuthDTO login(String userid);
-	public int insert(MemberDTO dto);
+	public int insert(MemberDTO memberDTO);
 }

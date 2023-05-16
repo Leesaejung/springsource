@@ -76,10 +76,10 @@ public class MemberController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPost(MemberDTO dto) {
-		log.info("회원가입요청"+dto);
+	public String registerPost(MemberDTO memberDTO) {
+		log.info("회원가입요청"+memberDTO);
 		
-		if(service.register(dto)) {
+		if(service.register(memberDTO)) {
 			return "redirect:/member/login";
 		}else {
 			return "/member/register";

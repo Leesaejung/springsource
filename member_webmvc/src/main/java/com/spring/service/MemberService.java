@@ -8,5 +8,5 @@ public interface MemberService {
 	// 로그인
 	public AuthDTO login(LoginDTO loginDTO);
 	// 회원가입
-	public boolean register(MemberDTO dto);
+	public boolean register(MemberDTO memberdto);
 }
