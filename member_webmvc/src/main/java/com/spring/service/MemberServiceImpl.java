@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.AuthDTO;
+import com.spring.domain.ChangeDTO;
 import com.spring.domain.LoginDTO;
 import com.spring.domain.MemberDTO;
 import com.spring.mapper.MemberMapper;
@@ -45,6 +46,38 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.insert(memberDTO)==1?true:false;
 	}
+
+	@Override
+	public boolean dupId(String userid) {
+		return mapper.dupId(userid)==0?true:false;
+	}
+
+	@Override
+	public boolean remove(LoginDTO loginDTO) {
+		
+		//비밀번호 확인
+		String encodePass = mapper.getPass(loginDTO.getUserid());
+		
+		if (bPasswordEncoder.matches(loginDTO.getPassword(), encodePass)) {
+			return mapper.leave(loginDTO.getUserid())==1?true:false;	
+		}
+		return false;
+	}
+
+	@Override
+	public boolean update(ChangeDTO changeDTO) {
+		//비밀번호 확인
+		String encodePass = mapper.getPass(changeDTO.getUserid());
+		
+		if (bPasswordEncoder.matches(changeDTO.getCurrentPassword(), encodePass)) {
+			// 변경 비밀번호 암호화
+			changeDTO.setNewPassword(bPasswordEncoder.encode(changeDTO.getNewPassword()));
+			
+			return mapper.update(changeDTO)==1?true:false;	
+		}
+		return false;
+	}
+	
 	
 
 }
