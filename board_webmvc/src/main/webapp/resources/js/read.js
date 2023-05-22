@@ -2,9 +2,9 @@
  *
  */
 
-const form = document.querySelector("#openForm");
+const form = document.querySelector("#operForm");
 
-// 수정 버튼 클릭 시 openForm 보내기
+// 수정 버튼 클릭 시 operForm 보내기
 // /board/modify 전송
 document.querySelector(".btn-info").addEventListener("click", () => {
   form.action = "/board/modify";

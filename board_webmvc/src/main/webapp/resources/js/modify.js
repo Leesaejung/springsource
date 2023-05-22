@@ -2,9 +2,9 @@
  *
  */
 
-const form = document.querySelector("#openForm");
+const form = document.querySelector("#operForm");
 
-// 삭제 버튼 클릭 시 openForm 보내기
+// 삭제 버튼 클릭 시 operForm 보내기
 // /board/remove 전송
 document.querySelector(".btn-danger").addEventListener("click", () => {
   form.action = "/board/remove";
