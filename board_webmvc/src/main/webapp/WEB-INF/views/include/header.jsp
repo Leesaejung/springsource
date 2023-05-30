@@ -27,6 +27,14 @@
 	<!-- Bootstrap core JavaScript-->
     <script src="/resources/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- lightbox -->
+    <link href="/resources/css/lightbox/lightbox.min.css" rel="stylesheet" type="text/css">
+    <script src="/resources/js/lightbox/lightbox.min.js"></script>
+    
+    <!-- upload.css -->
+    <link href="/resources/css/upload.css" rel="stylesheet" type="text/css">
+    
 </head>
 
 <body id="page-top">
