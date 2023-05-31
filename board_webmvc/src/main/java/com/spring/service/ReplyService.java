@@ -16,5 +16,6 @@ public interface ReplyService {
 	public ReplyPageDTO getList(Criteria cri,int bno);
 	public boolean update(ReplyDTO dto);
 	public boolean delete(int rno);
+	 
 	
 }

@@ -65,5 +65,5 @@ form.addEventListener("submit", (e) => {
     form.submit();
   }
 
-  form.classList.add("was-validated");
+  //form.classList.add("was-validated");
 });

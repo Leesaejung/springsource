@@ -111,6 +111,8 @@ document.querySelector(".uploadResult").addEventListener("click", (e) => {
   const formData = new FormData();
   formData.append("fileName", targrtFile);
   formData.append("type", type);
+
+  // /deleteFile?fileName=2023/05/30/test.jpg&type=image
   //const data = new URLSearchParams(formData);
 
   fetch("/deleteFile", {

@@ -17,4 +17,6 @@ public interface BoardMapper {
 	public int totalCnt(Criteria cri);
 	public int updateReplyCnt(@Param("bno")int bno, @Param("amount")int amount);
 
+	// 상세 조회 + 파일 정보
+	public BoardDTO readAttach(int bno);
 }

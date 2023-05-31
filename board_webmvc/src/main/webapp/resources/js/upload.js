@@ -1,7 +1,3 @@
-/**
- *
- */
-
 document.querySelector("#uploadFile").addEventListener("change", () => {
   //FormData 객체 생성
   const formData = new FormData();
@@ -116,6 +112,7 @@ function showUploadedFile(uploadResultArr) {
 
 // X 클릭 시 alert()창 띄우기
 //                    이벤트를 감지한 부모
+// register.jsp에서 사용하는 개념하고 modify.jsp 사용하는 개념은 다름
 document.querySelector(".uploadResult").addEventListener("click", (e) => {
   // 자식에세 이벤트가 일어나면 부모에게 전파 -> 이벤트 전파
   // 실제 이벤트가 발생한 대상 : 자식, ==> e.target
@@ -135,25 +132,35 @@ document.querySelector(".uploadResult").addEventListener("click", (e) => {
   // x 가 눌러진 li 가져오기
   const li = e.target.closest("li");
 
-  // script 에서 <form> 태그 작성
-  const formData = new FormData();
-  formData.append("fileName", targrtFile);
-  formData.append("type", type);
-  //const data = new URLSearchParams(formData);
+  // path = /WEB-INF/views/board/modify.jsp';
 
-  fetch("/deleteFile", {
-    method: "post",
-    body: formData,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("파일 제거 실패");
-      }
-      return response.text();
-    })
-    .then((data) => {
-      console.log(data);
+  if (path.match("modify")) {
+    // modify 요청 처리
+    if (confirm("정말로 파일을 삭제하시겠습니까?")) {
       li.remove();
+    }
+  } else {
+    // register 요청 처리
+    // script 에서 <form> 태그 작성
+    const formData = new FormData();
+    formData.append("fileName", targrtFile);
+    formData.append("type", type);
+    //const data = new URLSearchParams(formData);
+
+    fetch("/deleteFile", {
+      method: "post",
+      body: formData,
     })
-    .catch((error) => console.log(error));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("파일 제거 실패");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        console.log(data);
+        li.remove();
+      })
+      .catch((error) => console.log(error));
+  }
 });

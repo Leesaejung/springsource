@@ -1,6 +1,86 @@
-/**
- *
+/*
+ * 글 번호에 대해소 첨부파일 가져오기
  */
+// 글 번호에 대해서 첨부파일 가져오기
+function showAttachFile(uploadResultArr) {
+  // 첨부파일 목록 가져오기
+  let str = "";
+  uploadResultArr.forEach((item) => {
+    //fileType 이 true 라면 image 파일이라면 썸네일 이미지 보여주기
+    if (item.fileType) {
+      //썸네일 이미지 경로 생성
+      let fileCallPath = encodeURIComponent(
+        item.uploadPath + "\\s_" + item.uuid + "_" + item.fileName
+      );
+      //썸네일 이미지 클릭 ==> 원본 이미지 보여주기
+      let oriFileCallPath = encodeURIComponent(
+        item.uploadPath + "\\" + item.uuid + "_" + item.fileName
+      );
+
+      str +=
+        "<li data-path='" +
+        item.uploadPath +
+        "' data-uuid='" +
+        item.uuid +
+        "' ";
+      str +=
+        " data-filename='" +
+        item.fileName +
+        "' data-type='" +
+        item.fileType +
+        "' >";
+      str +=
+        "<a href='/display?fileName=" +
+        oriFileCallPath +
+        "' data-lightbox='image'>";
+      str +=
+        "<div class='text-center'><img src='/display?fileName=" +
+        fileCallPath +
+        "'></a></div>";
+      str += "<small>" + item.fileName + "</small>";
+      str += "</li>";
+    } else {
+      // txt 파일 경로 생성
+      let fileCallPath = encodeURIComponent(
+        item.uploadPath + "\\" + item.uuid + "_" + item.fileName
+      );
+
+      str +=
+        "<li data-path='" +
+        item.uploadPath +
+        "' data-uuid='" +
+        item.uuid +
+        "' ";
+      str +=
+        " data-filename='" +
+        item.fileName +
+        "' data-type='" +
+        item.fileType +
+        "' >";
+      str += "<a href='/download?fileName=" + fileCallPath + "'>";
+      str +=
+        "<div class='text-center'><img src='/resources/img/txt-file.png'></div>";
+      str += "<small>" + item.fileName + "</small></a> ";
+      str += "</li>";
+    }
+  });
+  document
+    .querySelector(".uploadResult ul")
+    .insertAdjacentHTML("beforeend", str);
+}
+
+fetch("/board/getAttachList?bno=" + bno)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("첨부물 없음");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    showAttachFile(data);
+  })
+  .catch((error) => console.log(error));
 
 const form = document.querySelector("#operForm");
 
