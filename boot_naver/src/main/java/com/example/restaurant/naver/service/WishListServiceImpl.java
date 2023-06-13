@@ -9,6 +9,9 @@ import com.example.restaurant.naver.dto.SearchLocalItem;
 import com.example.restaurant.naver.dto.SearchLocalReq;
 import com.example.restaurant.naver.dto.SearchLocalRes;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,6 +114,12 @@ public class WishListServiceImpl implements WishListService {
 		dto.setVisitCount(entity.getVisitCount());
 		dto.setLastVisitDate(entity.getLastVisitDate());
 		return dto;
+	}
+
+	@Override
+	public List<WishListDTO> all() {
+		// List<WishListEntity> list = wishListRepository.findAll();
+		return wishListRepository.findAll().stream().map(wish -> entityToDTO(wish)).collect(Collectors.toList());
 	}
 
 }
